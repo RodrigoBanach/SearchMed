@@ -104,6 +104,7 @@ namespace SearchMed.Controllers
             Remedio remedio = context.Remedios.Find(id);
             context.Remedios.Remove(remedio);
             context.SaveChanges();
+            TempData["Message"] = "Remedio " + remedio.Nome.ToUpper() + " foi removido com Sucesso";
             return RedirectToAction("Index");
         }
 

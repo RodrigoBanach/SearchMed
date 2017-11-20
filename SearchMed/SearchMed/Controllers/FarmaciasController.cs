@@ -107,6 +107,7 @@ namespace SearchMed.Controllers
             Find(id);
             context.Farmacias.Remove(farmacia);
             context.SaveChanges();
+            TempData["Message"] = "Farmacia " + farmacia.Nome.ToUpper() + " foi removido com Sucesso";
             return RedirectToAction("Index");
         }
 

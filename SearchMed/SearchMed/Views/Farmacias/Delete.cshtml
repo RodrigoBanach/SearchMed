@@ -1,32 +1,42 @@
 ﻿@model SearchMed.Models.Farmacia
-
 @{
-    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title =
+    "Visualizando detalhes de uma Farmacia";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Farmacia</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Dados da farmcia a ser removido
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome)<br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user">
+                    </i>
+                </span>
+                @Html.EditorFor(model => model.Nome, new
+{
+    htmlAttributes = new
+    {
+        @class ="form-control",
+        disabled = "disabled"
     }
+})
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer panel-info">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <input type="submit" value="Remover FARMACIA" class="btn btn-danger" />
+            @Html.ActionLink("Retornar para a listagem","Index", null, new
+{
+    @class ="btn btn-info"
+})
+        }
+    </div>
+
 </div>
