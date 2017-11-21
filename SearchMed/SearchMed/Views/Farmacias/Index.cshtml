@@ -2,7 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Listagem de FARMACIAS";
+    ViewBag.Title = "Listagem de FARMÁCIAS";
 }
 
 @if (@TempData["Message"] != null)
@@ -14,7 +14,7 @@
 
 <div class="panel panel-primary">
     <div class="panel-heading">
-        FARMACIAS registradas
+        FARMÁCIAS registradas
     </div>
     <div class="panel-body">
         <table class="table table-striped table-hover">
@@ -24,10 +24,17 @@
                         ID
                     </th>
                     <th>
-
-                        Farmcia
+                        Farmácia
                     </th>
-                    <th></th>
+                    <th>
+                        Endereço
+                    </th>
+                    <th>
+                        CNPJ
+                    </th>
+                    <th>
+                        Telefone
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -35,29 +42,38 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem=> item.FarmaciaId)
+                            @Html.DisplayFor(modelItem => item.FarmaciaId)
                         </td>
                         <td>
 
-                            @Html.DisplayFor(modelItem=> item.Nome)
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.Endereco)
+                            </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.CNPJ)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(Model => item.Telefone)
                         </td>
                         <td>
 
-                            @Html.ActionLink("Alterar","Edit", new
-{
-    id =
+                            @Html.ActionLink("Alterar", "Edit", new
+                       {
+                           id =
 item.FarmaciaId
-}) |
-                            @Html.ActionLink("Detalhes","Details", new
-{
-    id =
+                       }) |
+                            @Html.ActionLink("Detalhes", "Details", new
+                       {
+                           id =
 item.FarmaciaId
-}) |
-                            @Html.ActionLink("Eliminar","Delete", new
-{
-    id =
+                       }) |
+                            @Html.ActionLink("Eliminar", "Delete", new
+                       {
+                           id =
 item.FarmaciaId
-})
+                       })
                         </td>
                     </tr>
                 }
@@ -67,22 +83,22 @@ item.FarmaciaId
     <div class="panel-footer panel-heading">
 
 
-        @Html.ActionLink("Registrar um novo Farmacia","Create", null, new
-{
-    @class =
+        @Html.ActionLink("Registrar um novo Farmácia", "Create", null, new
+   {
+       @class =
 "btn btn-success"
-})
+   })
     </div>
 </div>
 @section styles{
-    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
 }
 @section ScriptPage {
-<script src=" @Url.Content("~/scripts/DataTables/jquery. dataTables.js")" ></script>
+    <script src=" @Url.Content("~/scripts/DataTables/jquery. dataTables.js")"></script>
     <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
-$(document).ready(function () {
-$('.table').dataTable();
-});
+        $(document).ready(function () {
+            $('.table').dataTable();
+        });
     </script>
 }

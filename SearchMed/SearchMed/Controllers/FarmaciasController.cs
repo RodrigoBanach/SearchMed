@@ -12,12 +12,14 @@ namespace SearchMed.Controllers
 {
     public class FarmaciasController : Controller
     {
-        private EFContext context = new EFContext();
+        private EFContext _context = new EFContext();
 
         // GET: Farmacia
         public ActionResult Index()
         {
-            return View(context.Farmacias.OrderBy(c => c.Nome));
+            return View(_context
+                .Farmacias
+                .OrderBy(s => s.Nome));
         }
 
         public ActionResult Create()
@@ -29,8 +31,8 @@ namespace SearchMed.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Farmacia farmacia)
         {
-            context.Farmacias.Add(farmacia);
-            context.SaveChanges();
+            _context.Farmacias.Add(farmacia);
+            _context.SaveChanges();
             return RedirectToAction("Create","Remedios");
         }
 
@@ -43,7 +45,7 @@ namespace SearchMed.Controllers
                 HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Farmacia farmacia = context.Farmacias.Find(id);
+            Farmacia farmacia = _context.Farmacias.Find(id);
             if (farmacia == null)
             {
                 return HttpNotFound();
@@ -57,8 +59,8 @@ namespace SearchMed.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Entry(farmacia).State = EntityState.Modified;
-                context.SaveChanges();
+                _context.Entry(farmacia).State = EntityState.Modified;
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(farmacia);
@@ -72,7 +74,7 @@ namespace SearchMed.Controllers
                 HttpStatusCode.BadRequest);
             }
 
-            Farmacia farmacia = context.Farmacias.
+            Farmacia farmacia = _context.Farmacias.
             Find(id);
 
             if (farmacia == null)
@@ -90,7 +92,7 @@ namespace SearchMed.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Farmacia farmacia = context.Farmacias.Find(id);
+            Farmacia farmacia = _context.Farmacias.Find(id);
             if (farmacia == null)
             {
                 return HttpNotFound();
@@ -103,10 +105,10 @@ namespace SearchMed.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Farmacia farmacia = context.Farmacias.
+            Farmacia farmacia = _context.Farmacias.
             Find(id);
-            context.Farmacias.Remove(farmacia);
-            context.SaveChanges();
+            _context.Farmacias.Remove(farmacia);
+            _context.SaveChanges();
             TempData["Message"] = "Farmacia " + farmacia.Nome.ToUpper() + " foi removido com Sucesso";
             return RedirectToAction("Index");
         }

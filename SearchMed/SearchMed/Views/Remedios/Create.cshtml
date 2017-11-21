@@ -21,13 +21,24 @@
                     </div>
                 </div>
             </div>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Preco, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Preco, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Preco, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="panel-footer panel-info">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit"
-                       value="Adicionar Remedio"
+                       value="Adicionar Remédio"
                        class="btn btn-danger" />
-                @Html.ActionLink("Retornar para a listagem de Remedios", "Index", null, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Retornar para a listagem de Reéedios", "Index", null, new { @class = "btn btn-warning" })
             </div>
             <br />
             <br />

@@ -1,14 +1,14 @@
 ﻿@model SearchMed.Models.Farmacia
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Registrando um nova Farmacia";
+    ViewBag.Title = "Registrando um nova Farmácia";
 }
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="panel panel-primary">
         <div class="panel-heading">
-            Registro de um Nova Farmacia
+            Registro de um Nova Farmácia
         </div>
         <div class="panel-body">
             <div class="form-horizontal">
@@ -20,6 +20,27 @@
                         @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
                             </div>
                                 </div>  
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Endereco, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Endereco, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Endereco, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CNPJ, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.CNPJ, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CNPJ, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Telefone, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
                                     </div>
                                         </div>
                          <div class="panel-footer panel-info">
@@ -27,7 +48,7 @@
                                  <input type="submit"
                                         value="Adicionar Farmacia"
                                         class="btn btn-danger" />
-                                       @Html.ActionLink("Retornar para a listagem de Farmacias", "Index", null, new { @class = "btn btn-warning" })
+                                       @Html.ActionLink("Retornar para a listagem de Farmácias", "Index", null, new { @class = "btn btn-warning" })
                                  </div> 
                              <br />
                              <br />

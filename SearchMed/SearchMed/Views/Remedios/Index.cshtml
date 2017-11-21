@@ -26,6 +26,9 @@
                     <th>
                         Remédio
                     </th>
+                    <th>
+                        Preço
+                    </th>
                     <th></th>
                 </tr>
             </thead>
@@ -40,8 +43,11 @@
 
                             @Html.DisplayFor(modelItem => item.Nome)
                         </td>
-                        <td>
 
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Preco)
+                        </td>
+                        <td>
                             @Html.ActionLink("Alterar", "Edit", new
                        {
                            id =

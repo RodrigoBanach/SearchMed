@@ -2,11 +2,11 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title =
-    "Visualizando detalhes de uma Farmacia";
+    "Visualizando detalhes de uma Farmácia";
 }
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Dados da farmcia a ser removido
+        Dados da farmácia a ser removido
     </div>
     <div class="panel-body">
         <div class="form-group">
@@ -16,27 +16,47 @@
                     <i class="glyphicon glyphicon-user">
                     </i>
                 </span>
-                @Html.EditorFor(model => model.Nome, new
-{
-    htmlAttributes = new
-    {
-        @class ="form-control",
-        disabled = "disabled"
-    }
-})
+                @Html.EditorFor(model => model.Nome, new{htmlAttributes = new{@class ="form-control",disabled = "disabled"}})
             </div>
         </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Endereco)<br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user">
+                    </i>
+                </span>
+                @Html.EditorFor(model => model.Endereco, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CNPJ)<br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user">
+                    </i>
+                </span>
+                @Html.EditorFor(model => model.CNPJ, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Telefone)<br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user">
+                    </i>
+                </span>
+                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+
     </div>
     <div class="panel-footer panel-info">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-            <input type="submit" value="Remover FARMACIA" class="btn btn-danger" />
-            @Html.ActionLink("Retornar para a listagem","Index", null, new
-{
-    @class ="btn btn-info"
-})
-        }
+            <input type="submit" value="Remover FARMÁCIA" class="btn btn-danger" />
+            @Html.ActionLink("Retornar para a listagem","Index", null, new{@class ="btn btn-info"})}
     </div>
 
 </div>

@@ -12,5 +12,7 @@ namespace SearchMed.Context
         public EFContext() : base("Asp_Net_MVC_CS") { }
         public DbSet<Farmacia> Farmacias { get; set; }
         public DbSet<Remedio> Remedios { get; set; }
+
+
     }
 }
