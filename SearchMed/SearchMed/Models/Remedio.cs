@@ -11,6 +11,8 @@ namespace SearchMed.Models
         public string Nome { get; set; }
         public string Preco { get; set; }
 
-        public virtual ICollection<Farmacia> Farmacias { get; set; }
+        public long? FarmaciaId { get; set; }
+
+        public Remedio Farmacia { get; set; }
     }
 }

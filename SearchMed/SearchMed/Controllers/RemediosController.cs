@@ -8,6 +8,7 @@ using SearchMed.Models;
 using System.Net;
 using System.Data.Entity;
 
+
 namespace SearchMed.Controllers
 {
     public class RemediosController : Controller
@@ -17,11 +18,22 @@ namespace SearchMed.Controllers
         // GET: Remedios
         public ActionResult Index()
         {
-            return View(context.Remedios.OrderBy(c => c.Nome));
+            var list = context
+                .Remedios
+                .Include(f => f.Farmacia)
+                .OrderBy(n => n.Nome)
+                .ToList();
+            return View(list);
+
+            //return View(context.Remedios.OrderBy(c => c.Nome));
         }
 
         public ActionResult Create()
+
         {
+            ViewBag.FarmaciaId = new SelectList(context
+                .Farmacias
+                .OrderBy(n => n.Nome), "FarmaciaId", "Nome");
             return View();
         }
 
@@ -29,50 +41,71 @@ namespace SearchMed.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Remedio remedio)
         {
-            context.Remedios.Add(remedio);
-            context.SaveChanges();
-            return RedirectToAction("Index","Farmacias");
+            try
+            {
+                context.Remedios.Add(remedio);
+                context.SaveChanges();
+                return RedirectToAction("Create", "Remedios");
+            }
+            catch
+            {
+                return View(remedio);
+            }
+
         }
 
         public ActionResult Edit(long? id)
         {
             if (id == null)
             {
-                return new
-                HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.
+                BadRequest);
             }
             Remedio remedio = context.Remedios.Find(id);
             if (remedio == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.FarmaciaId = new SelectList(context
+                .Farmacias
+                .OrderBy(n => n.Nome), "FarmaciaId", "Nome", remedio
+                .FarmaciaId);
             return View(remedio);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Remedio remedio)
         {
-            if (ModelState.IsValid)
+            try
             {
-                context.Entry(remedio).State = EntityState.Modified;
-                context.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    context.Entry(remedio).State = EntityState.Modified;
+                    context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(remedio);
             }
-            return View(remedio);
+            catch
+            {
+                return View(remedio);
+            }
         }
 
         public ActionResult Details(long? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.
+                BadRequest);
             }
-
-            Remedio remedio = context.Remedios.Find(id);
-
+            Remedio remedio = context
+                .Remedios
+                .Where(p => p.RemedioId == id)
+                .Include(f => f.Farmacia)
+                .First();
             if (remedio == null)
             {
                 return HttpNotFound();
@@ -80,15 +113,20 @@ namespace SearchMed.Controllers
             return View(remedio);
         }
 
+
         // GET: Fabricantes/Delete/5
         public ActionResult Delete(long? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(
-                HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.
+                BadRequest);
             }
-            Remedio remedio = context.Remedios.Find(id);
+            Remedio remedio = context
+                .Remedios
+                .Where(p => p.RemedioId == id)
+                .Include(f => f.Farmacia)
+                .First();
             if (remedio == null)
             {
                 return HttpNotFound();
@@ -101,12 +139,19 @@ namespace SearchMed.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Remedio remedio = context.Remedios.Find(id);
-            context.Remedios.Remove(remedio);
-            context.SaveChanges();
-            TempData["Message"] = "Remedio " + remedio.Nome.ToUpper() + " foi removido com Sucesso";
-            return RedirectToAction("Index");
+            try
+            {
+                Remedio remedio = context.Remedios.Find(id);
+                context.Remedios.Remove(remedio);
+                context.SaveChanges();
+                TempData["Message"] = "Remédio " + remedio.Nome.ToUpper() + " foi removido";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
-
     }
 }
+    

@@ -10,12 +10,10 @@ namespace SearchMed.Models
         public long FarmaciaId { get; set; }
         public string Nome { get; set; }
         public string Endereco { get; set; }
-        public int CNPJ { get; set; }
-        public int Telefone { get; set; }
+        public long Telefone { get; set; }
 
-        public long? RemedioId { get; set; }
 
-        public Remedio Remedio { get; set; }
+        public virtual ICollection<Remedio> Remedios { get; set; }
 
     }
 }

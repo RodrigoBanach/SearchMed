@@ -45,7 +45,12 @@ namespace SearchMed.Controllers
                 HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Farmacia farmacia = _context.Farmacias.Find(id);
+            // Farmacia farmacia = _context.Farmacias.Find(id);
+            var farmacia = _context.Farmacias.Where(f => f.FarmaciaId == id)
+                 .Include("Remedios")
+                 .First();
+
+
             if (farmacia == null)
             {
                 return HttpNotFound();
@@ -74,8 +79,11 @@ namespace SearchMed.Controllers
                 HttpStatusCode.BadRequest);
             }
 
-            Farmacia farmacia = _context.Farmacias.
-            Find(id);
+            //Farmacia farmacia = _context.Farmacias.Find(id);
+
+            var farmacia = _context.Farmacias.Where(f => f.FarmaciaId == id)
+                .Include("Remedios")
+                .First();
 
             if (farmacia == null)
             {
@@ -92,7 +100,11 @@ namespace SearchMed.Controllers
                 return new HttpStatusCodeResult(
                 HttpStatusCode.BadRequest);
             }
-            Farmacia farmacia = _context.Farmacias.Find(id);
+            //Farmacia farmacia = _context.Farmacias.Find(id);
+            var farmacia = _context.Farmacias.Where(f => f.FarmaciaId == id)
+                .Include("Remedios")
+                .First();
+
             if (farmacia == null)
             {
                 return HttpNotFound();

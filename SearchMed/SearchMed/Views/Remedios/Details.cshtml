@@ -1,61 +1,51 @@
 ﻿@model SearchMed.Models.Remedio
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title =
-    "Visualizando detalhes de um REMÉDIO";
+    ViewBag.Title = "Alterando os dados de um Remédio";
 }
-
 <div class="panel panel-primary">
     <div class="panel-heading">
-        Visualizando detalhes de um REMÉDIO
+        Visualizando detalhes de um Remédio
     </div>
     <div class="panel-body">
         <div class="form-group">
-            @Html.LabelFor(model => model.Nome)
-            <br />
+            @Html.LabelFor(model => model.Nome)<br />
             <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="glyphiconglyphicon-user"></i>
+                    <i class="glyphicon glyphicon-user"></i>
                 </span>
-                @Html.EditorFor(model => model.Nome, new
-           {
-               htmlAttributes = new
-               {
-                   @class = "form-control",
-                   disabled = "disabled"
-               }
-           })
+                @Html.EditorFor(model => model.Nome,new{htmlAttributes = new{@class ="form-control",disabled = "disabled"}})
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Preco)
-            <br />
+            @Html.LabelFor(model => model.Preco)<br />
             <div class="input-group">
                 <span class="input-group-addon">
-                    <i class="glyphiconglyphicon-user"></i>
+                    <i class="glyphicon glyphicon-user"></i>
                 </span>
-                @Html.EditorFor(model => model.Preco, new
-           {
-               htmlAttributes = new
-               {
-                   @class = "form-control",
-                   disabled = "disabled"
-               }
-           })
+                @Html.EditorFor(model => model.Preco, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Farmacia)<br />
+            <div class="input-group">
+                <span class="input-group-addon">
+                    <i class="glyphicon glyphicon-user"></i>
+                </span>
+                @Html.EditorFor(model => model.Farmacia.Nome, new {htmlAttributes = new{@class ="form-control",disabled = "disabled"}})
             </div>
         </div>
     </div>
     <div class="panel-footer panel-info">
-        @Html.ActionLink("Alterar", "Edit", new
-   {
-       id =Model.RemedioId
-   }, new
-   {
-       @class = "btn btn-info"
-   })
-        @Html.ActionLink("Retornar para a listagem", "Index", null, new
-   {
-       @class = "btn btn-info"
-   })
+        @Html.ActionLink("Alterar", "Edit", new{id = Model.RemedioId}, new { @class = "btn btn-info" })
+        @Html.ActionLink("Retornar para a listagem", "Index",null, new { @class = "btn btn-info" })
     </div>
 </div>
+@section ScriptPage {
+    <script type="text/javascript">
+$(document).ready(function () {
+$('li').removeClass("active");
+$('#liProdutos').addClass("active");
+});
+    </script>
+}
