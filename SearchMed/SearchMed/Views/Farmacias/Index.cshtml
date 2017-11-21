@@ -12,7 +12,7 @@
     </div>
 }
 
-<div class="panel panel-primary">
+<div class="alert panel panel-success">
     <div class="panel-heading">
         FARMÁCIAS registradas
     </div>
@@ -32,6 +32,7 @@
                     <th>
                         Telefone
                     </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -74,25 +75,25 @@ item.FarmaciaId
             </tbody>
         </table>
     </div>
-    <div class="panel-footer panel-heading">
+    <div class="panel">
 
 
-        @Html.ActionLink("Registrar um novo Farmácia", "Create", null, new
-   {
-       @class =
-"btn btn-success"
-   })
+        @Html.ActionLink("Registrar um nova Farmácia", "Create", null, new{@class ="btn btn-success"})
     </div>
 </div>
+
 @section styles{
-    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet" />
-}
+    <link href="@Url.Content("~/content/DataTables/css/dataTables.bootstrap.css")" rel="stylesheet">}
 @section ScriptPage {
-    <script src=" @Url.Content("~/scripts/DataTables/jquery. dataTables.js")"></script>
+    <script src="@Url.Content("~/scripts/DataTables/jquery.dataTables.js")"></script>
     <script src="@Url.Content("~/scripts/DataTables/dataTables.bootstrap.js")"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.table').dataTable();
+            $('li').removeClass("active");
+            $('#liFarmacias').addClass("active");
+            $('.table').dataTable({
+                "order": [[1, "asc"]]
+            });
         });
     </script>
 }

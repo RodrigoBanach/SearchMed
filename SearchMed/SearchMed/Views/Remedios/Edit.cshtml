@@ -8,7 +8,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="panel panel-primary">
+    <div class="alert panel panel-success">
         <div class="panel-heading">
             Alteração dos dados de um Remédio
         </div>
@@ -39,9 +39,10 @@
                         @Html.ValidationMessageFor(model =>model.FarmaciaId, "", new{@class ="text-danger"})
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="panel">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Gravar alterações" class="btn btn-default" />
+                        <input type="submit" value="Gravar alterações" class="btn btn-info" />
+                        @Html.ActionLink("Retornar para a listagem de um Remédio", "Index", null, new { @class = "btn btn-success" })
                     </div>
                 </div>
             </div>

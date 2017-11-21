@@ -117,11 +117,21 @@ namespace SearchMed.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(long id)
         {
-            Farmacia farmacia = _context.Farmacias.
-            Find(id);
-            _context.Farmacias.Remove(farmacia);
-            _context.SaveChanges();
-            TempData["Message"] = "Farmacia " + farmacia.Nome.ToUpper() + " foi removido com Sucesso";
+            Farmacia farmacia = _context
+                .Farmacias
+                .Include(f=>f.Remedios)
+                .FirstOrDefault(f=>f.FarmaciaId == id);
+
+            if (farmacia != null)
+            {
+                farmacia.Remedios
+                    .ToList()
+                    .ForEach(r => _context.Remedios.Remove(r));
+                _context.Farmacias.Remove(farmacia);
+                _context.SaveChanges();
+                TempData["Message"] = "Farmacia " + farmacia.Nome.ToUpper() + " foi removido com Sucesso";
+                
+            }
             return RedirectToAction("Index");
         }
 

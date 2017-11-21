@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Alterando os dados de um Remédio";
 }
-<div class="panel panel-primary">
+<div class="alert panel panel-success">
     <div class="panel-heading">
         Visualizando detalhes de um Remédio
     </div>
@@ -36,9 +36,9 @@
             </div>
         </div>
     </div>
-    <div class="panel-footer panel-info">
+    <div class="panel">
         @Html.ActionLink("Alterar", "Edit", new{id = Model.RemedioId}, new { @class = "btn btn-info" })
-        @Html.ActionLink("Retornar para a listagem", "Index",null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Retornar para a listagem", "Index",null, new { @class = "btn btn-success" })
     </div>
 </div>
 @section ScriptPage {

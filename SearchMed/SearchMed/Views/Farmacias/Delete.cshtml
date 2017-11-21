@@ -4,7 +4,7 @@
     ViewBag.Title =
     "Visualizando detalhes de uma Farmácia";
 }
-<div class="panel panel-primary">
+<div class="alert panel panel-success">
     <div class="panel-heading">
         Dados da farmácia a ser removido
     </div>
@@ -41,12 +41,12 @@
         </div>
 
     </div>
-    <div class="panel-footer panel-info">
+    <div class="panel">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
             <input type="submit" value="Remover FARMÁCIA" class="btn btn-danger" />
-            @Html.ActionLink("Retornar para a listagem","Index", null, new{@class ="btn btn-info"})}
+            @Html.ActionLink("Retornar para a listagem","Index", null, new{@class = "btn btn-success" })}
     </div>
 
 </div>

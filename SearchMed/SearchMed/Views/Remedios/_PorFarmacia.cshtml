@@ -1,6 +1,6 @@
 @model IEnumerable<SearchMed.Models.Remedio>
 
-<div class="panel panel-primary">
+<div class="alert panel panel-success ">
     <div class="panel-heading">
         Relação de Remédios registrados para a Farmácia
     </div>
@@ -11,10 +11,6 @@
                     <th>
                         Remédio
                     </th>
-
-                    <th>Farmácia</th>
-
-                </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
@@ -24,15 +20,9 @@
 
                             @Html.DisplayFor(modelItem => item.Nome)
                         </td>
-                        <td>
-
-                            @Html.DisplayFor(modelItem => item.Farmacia.Nome)
-                        </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </div>
-    <div class="panel-footer panel-info">
     </div>
 </div>

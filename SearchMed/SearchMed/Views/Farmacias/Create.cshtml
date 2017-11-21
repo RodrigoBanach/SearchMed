@@ -6,7 +6,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="panel panel-primary">
+    <div class="alert panel panel-success">
         <div class="panel-heading">
             Registro de um Nova Farmácia
         </div>
@@ -36,13 +36,12 @@
                 </div>
                                     </div>
                                         </div>
-                         <div class="panel-footer panel-info">
-                             <div class="col-md-offset-2 col-md-10">
+                         <div class="panel">
+
                                  <input type="submit"
                                         value="Adicionar Farmacia"
-                                        class="btn btn-danger" />
-                                       @Html.ActionLink("Retornar para a listagem de Farmácias", "Index", null, new { @class = "btn btn-warning" })
-                                 </div> 
+                                        class="btn btn-success" />
+                                       @Html.ActionLink("Retornar para a listagem de Farmácias", "Index", null, new { @class = "btn btn-success" })
                              <br />
                              <br />
                              </div>

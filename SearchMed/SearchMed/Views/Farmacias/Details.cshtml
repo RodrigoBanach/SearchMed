@@ -5,7 +5,7 @@
     "Visualizando detalhes de um FARMÁCIA";
     }
 
-<div class="panel panel-primary">
+<div class="alert panel panel-success">
     <div class="panel-heading">
         Visualizando detalhes de uma FARMÁCIA
     </div>
@@ -43,9 +43,9 @@
 
     </div>
 
-    <div class="panel-footer panel-info">
-        @Html.ActionLink("Alterar", "Edit", new{id =Model.FarmaciaId}, new{@class ="btn btn-info"})
-        @Html.ActionLink("Retornar para a listagem","Index", null, new{@class ="btn btn-info"})
+    <div class="panel">
+        @Html.ActionLink("Alterar", "Edit", new{id =Model.FarmaciaId}, new{@class = "btn btn-info" })
+        @Html.ActionLink("Retornar para a listagem","Index", null, new{@class ="btn btn-success"})
     </div>
 </div>
 @Html.Partial("~/Views/Remedios/_PorFarmacia.cshtml", Model.Remedios.ToList())
